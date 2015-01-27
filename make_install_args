@@ -1,0 +1,1 @@
+destdir=%{buildroot} includedir=%{_includedir} libdir=/lib usrlibdir=%{_libdir}
