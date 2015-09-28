@@ -4,7 +4,7 @@
 #
 Name     : libaio
 Version  : 0.3.110
-Release  : 8
+Release  : 9
 URL      : https://fedorahosted.org/releases/l/i/libaio/libaio-0.3.110.tar.gz
 Source0  : https://fedorahosted.org/releases/l/i/libaio/libaio-0.3.110.tar.gz
 Summary  : Linux-native asynchronous I/O access library
