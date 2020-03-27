@@ -4,7 +4,7 @@
 #
 Name     : libaio
 Version  : 0.3.112
-Release  : 19
+Release  : 20
 URL      : http://ftp.debian.org/debian/pool/main/liba/libaio/libaio_0.3.112.orig.tar.xz
 Source0  : http://ftp.debian.org/debian/pool/main/liba/libaio/libaio_0.3.112.orig.tar.xz
 Summary  : Linux-native asynchronous I/O access library
