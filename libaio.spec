@@ -4,7 +4,7 @@
 #
 Name     : libaio
 Version  : 0.3.112
-Release  : 20
+Release  : 21
 URL      : http://ftp.debian.org/debian/pool/main/liba/libaio/libaio_0.3.112.orig.tar.xz
 Source0  : http://ftp.debian.org/debian/pool/main/liba/libaio/libaio_0.3.112.orig.tar.xz
 Summary  : Linux-native asynchronous I/O access library
@@ -52,30 +52,35 @@ license components for the libaio package.
 
 %prep
 %setup -q -n libaio-0.3.112
+cd %{_builddir}/libaio-0.3.112
 %patch1 -p1
 
 %build
 export http_proxy=http://127.0.0.1:9/
 export https_proxy=http://127.0.0.1:9/
 export no_proxy=localhost,127.0.0.1,0.0.0.0
-export LANG=C
-export SOURCE_DATE_EPOCH=1555628804
-export LDFLAGS="${LDFLAGS} -fno-lto"
+export LANG=C.UTF-8
+export SOURCE_DATE_EPOCH=1604616699
+export GCC_IGNORE_WERROR=1
+export CFLAGS="$CFLAGS -fno-lto "
+export FCFLAGS="$FFLAGS -fno-lto "
+export FFLAGS="$FFLAGS -fno-lto "
+export CXXFLAGS="$CXXFLAGS -fno-lto "
 make  %{?_smp_mflags}
 
 
 %check
-export LANG=C
+export LANG=C.UTF-8
 export http_proxy=http://127.0.0.1:9/
 export https_proxy=http://127.0.0.1:9/
 export no_proxy=localhost,127.0.0.1,0.0.0.0
 make partcheck || :
 
 %install
-export SOURCE_DATE_EPOCH=1555628804
+export SOURCE_DATE_EPOCH=1604616699
 rm -rf %{buildroot}
 mkdir -p %{buildroot}/usr/share/package-licenses/libaio
-cp COPYING %{buildroot}/usr/share/package-licenses/libaio/COPYING
+cp %{_builddir}/libaio-0.3.112/COPYING %{buildroot}/usr/share/package-licenses/libaio/cf756914ec51f52f9c121be247bfda232dc6afd2
 %make_install destdir=%{buildroot} includedir=%{_includedir} libdir=/lib usrlibdir=%{_libdir}
 
 %files
@@ -83,7 +88,7 @@ cp COPYING %{buildroot}/usr/share/package-licenses/libaio/COPYING
 
 %files dev
 %defattr(-,root,root,-)
-/usr/include/*.h
+/usr/include/libaio.h
 /usr/lib64/libaio.so
 
 %files lib
@@ -93,4 +98,4 @@ cp COPYING %{buildroot}/usr/share/package-licenses/libaio/COPYING
 
 %files license
 %defattr(0644,root,root,0755)
-/usr/share/package-licenses/libaio/COPYING
+/usr/share/package-licenses/libaio/cf756914ec51f52f9c121be247bfda232dc6afd2
