@@ -4,7 +4,7 @@
 #
 Name     : libaio
 Version  : 0.3.113
-Release  : 22
+Release  : 23
 URL      : https://releases.pagure.org/libaio/libaio-0.3.113.tar.gz
 Source0  : https://releases.pagure.org/libaio/libaio-0.3.113.tar.gz
 Summary  : Linux-native asynchronous I/O access library
@@ -71,7 +71,7 @@ export http_proxy=http://127.0.0.1:9/
 export https_proxy=http://127.0.0.1:9/
 export no_proxy=localhost,127.0.0.1,0.0.0.0
 export LANG=C.UTF-8
-export SOURCE_DATE_EPOCH=1650419969
+export SOURCE_DATE_EPOCH=1650422488
 export GCC_IGNORE_WERROR=1
 export CFLAGS="$CFLAGS -fno-lto "
 export FCFLAGS="$FFLAGS -fno-lto "
@@ -96,7 +96,7 @@ export no_proxy=localhost,127.0.0.1,0.0.0.0
 make partcheck || :
 
 %install
-export SOURCE_DATE_EPOCH=1650419969
+export SOURCE_DATE_EPOCH=1650422488
 rm -rf %{buildroot}
 mkdir -p %{buildroot}/usr/share/package-licenses/libaio
 cp %{_builddir}/libaio-0.3.113/COPYING %{buildroot}/usr/share/package-licenses/libaio/cf756914ec51f52f9c121be247bfda232dc6afd2
@@ -104,17 +104,18 @@ pushd ../buildavx2/
 %make_install_v3 destdir=%{buildroot} includedir=%{_includedir} libdir=/lib usrlibdir=%{_libdir}
 popd
 %make_install destdir=%{buildroot} includedir=%{_includedir} libdir=/lib usrlibdir=%{_libdir}
+## install_append content
+mv %{buildroot}/lib %{buildroot}/usr/lib64
+## install_append end
 /usr/bin/elf-move.py avx2 %{buildroot}-v3 %{buildroot}/usr/share/clear/optimized-elf/ %{buildroot}/usr/share/clear/filemap/filemap-%{name}
 
 %files
 %defattr(-,root,root,-)
-/lib/libaio.so
-/lib/libaio.so.1
-/lib/libaio.so.1.0.2
 
 %files dev
 %defattr(-,root,root,-)
 /usr/include/libaio.h
+/usr/lib64/libaio.so
 
 %files filemap
 %defattr(-,root,root,-)
@@ -122,6 +123,8 @@ popd
 
 %files lib
 %defattr(-,root,root,-)
+/usr/lib64/libaio.so.1
+/usr/lib64/libaio.so.1.0.2
 /usr/share/clear/optimized-elf/other*
 
 %files license
