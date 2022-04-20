@@ -1,5 +1,5 @@
 PKG_NAME := libaio
-URL = http://ftp.debian.org/debian/pool/main/liba/libaio/libaio_0.3.112.orig.tar.xz
+URL = https://releases.pagure.org/libaio/libaio-0.3.113.tar.gz
 ARCHIVES = 
 
 include ../common/Makefile.common
