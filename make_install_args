@@ -1,1 +1,1 @@
-destdir=%{buildroot} includedir=%{_includedir} libdir=/lib usrlibdir=%{_libdir}
+destdir=%{buildroot} includedir=/usr/include libdir=/lib usrlibdir=/usr/lib64

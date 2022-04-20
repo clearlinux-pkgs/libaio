@@ -1,1 +1,0 @@
-mv %{buildroot}/lib %{buildroot}/usr/lib64

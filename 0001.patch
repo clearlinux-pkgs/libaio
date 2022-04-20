@@ -1,40 +1,12 @@
-diff --git a/harness/cases/19.t b/harness/cases/19.t
-index 4989510..5c3e0d6 100644
---- a/harness/cases/19.t
-+++ b/harness/cases/19.t
-@@ -41,7 +41,7 @@ open_temp_file(void)
- 	int fd;
- 	char template[sizeof(TEMPLATE)];
- 
--	strncpy(template, TEMPLATE, sizeof(TEMPLATE));
-+	strncpy(template, TEMPLATE, sizeof(template));
- 	fd = mkostemp(template, O_DIRECT);
- 	if (fd < 0) {
- 		perror("mkstemp");
-diff --git a/harness/cases/21.t b/harness/cases/21.t
-index 441eaa8..fe33a9d 100644
---- a/harness/cases/21.t
-+++ b/harness/cases/21.t
-@@ -43,7 +43,7 @@ open_temp_file()
- 	int fd;
- 	char temp_file[sizeof(TEMPLATE)];
- 
--	strncpy(temp_file, TEMPLATE, sizeof(TEMPLATE));
-+	strncpy(temp_file, TEMPLATE, sizeof(temp_file));
- 	fd = mkstemp(temp_file);
- 	if (fd < 0) {
- 		perror("mkstemp");
 diff --git a/src/Makefile b/src/Makefile
-index b437945..3f18998 100644
+index d080a1b..e4c6a78 100644
 --- a/src/Makefile
 +++ b/src/Makefile
-@@ -58,12 +58,12 @@ $(libname): $(libaio_sobjs) libaio.map
- 	$(CC) $(SO_CFLAGS) -Wl,--version-script=libaio.map -Wl,-soname=$(soname) -o $@ $(libaio_sobjs) $(LINK_FLAGS)
+@@ -60,11 +60,11 @@ $(libname): $(libaio_sobjs) libaio.map
  
  install: $(all_targets)
--	install -D -m 644 libaio.h $(includedir)/libaio.h
+ 	install -D -m 644 libaio.h $(includedir)/libaio.h
 -	install -D -m 644 libaio.a $(libdir)/libaio.a
-+	install -D -m 644 libaio.h $(includedir)/libaio.h
 +	install -D -m 644 libaio.a $(destdir)$(usrlibdir)/libaio.a
  ifeq ($(ENABLE_SHARED),1)
 -	install -D -m 755 $(libname) $(libdir)/$(libname)
