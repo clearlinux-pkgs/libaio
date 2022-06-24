@@ -4,13 +4,12 @@
 #
 Name     : libaio
 Version  : 0.3.113
-Release  : 24
+Release  : 25
 URL      : https://releases.pagure.org/libaio/libaio-0.3.113.tar.gz
 Source0  : https://releases.pagure.org/libaio/libaio-0.3.113.tar.gz
 Summary  : Linux-native asynchronous I/O access library
 Group    : Development/Tools
 License  : LGPL-2.1
-Requires: libaio-filemap = %{version}-%{release}
 Requires: libaio-lib = %{version}-%{release}
 Requires: libaio-license = %{version}-%{release}
 Patch1: 0001.patch
@@ -34,19 +33,10 @@ Requires: libaio = %{version}-%{release}
 dev components for the libaio package.
 
 
-%package filemap
-Summary: filemap components for the libaio package.
-Group: Default
-
-%description filemap
-filemap components for the libaio package.
-
-
 %package lib
 Summary: lib components for the libaio package.
 Group: Libraries
 Requires: libaio-license = %{version}-%{release}
-Requires: libaio-filemap = %{version}-%{release}
 
 %description lib
 lib components for the libaio package.
@@ -73,7 +63,7 @@ export http_proxy=http://127.0.0.1:9/
 export https_proxy=http://127.0.0.1:9/
 export no_proxy=localhost,127.0.0.1,0.0.0.0
 export LANG=C.UTF-8
-export SOURCE_DATE_EPOCH=1650437046
+export SOURCE_DATE_EPOCH=1656045478
 export GCC_IGNORE_WERROR=1
 export CFLAGS="$CFLAGS -fno-lto "
 export FCFLAGS="$FFLAGS -fno-lto "
@@ -98,7 +88,7 @@ export no_proxy=localhost,127.0.0.1,0.0.0.0
 make partcheck || :
 
 %install
-export SOURCE_DATE_EPOCH=1650437046
+export SOURCE_DATE_EPOCH=1656045478
 rm -rf %{buildroot}
 mkdir -p %{buildroot}/usr/share/package-licenses/libaio
 cp %{_builddir}/libaio-0.3.113/COPYING %{buildroot}/usr/share/package-licenses/libaio/cf756914ec51f52f9c121be247bfda232dc6afd2
@@ -106,7 +96,7 @@ pushd ../buildavx2/
 %make_install_v3 destdir=%{buildroot} includedir=/usr/include libdir=/lib usrlibdir=/usr/lib64
 popd
 %make_install destdir=%{buildroot} includedir=/usr/include libdir=/lib usrlibdir=/usr/lib64
-/usr/bin/elf-move.py avx2 %{buildroot}-v3 %{buildroot}/usr/share/clear/optimized-elf/ %{buildroot}/usr/share/clear/filemap/filemap-%{name}
+/usr/bin/elf-move.py avx2 %{buildroot}-v3 %{buildroot} %{buildroot}/usr/share/clear/filemap/filemap-%{name}
 
 %files
 %defattr(-,root,root,-)
@@ -115,10 +105,6 @@ popd
 %defattr(-,root,root,-)
 /usr/include/libaio.h
 /usr/lib64/libaio.so
-
-%files filemap
-%defattr(-,root,root,-)
-/usr/share/clear/filemap/filemap-libaio
 
 %files lib
 %defattr(-,root,root,-)
