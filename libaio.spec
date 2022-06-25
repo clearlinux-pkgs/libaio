@@ -4,7 +4,7 @@
 #
 Name     : libaio
 Version  : 0.3.113
-Release  : 25
+Release  : 26
 URL      : https://releases.pagure.org/libaio/libaio-0.3.113.tar.gz
 Source0  : https://releases.pagure.org/libaio/libaio-0.3.113.tar.gz
 Summary  : Linux-native asynchronous I/O access library
@@ -63,7 +63,7 @@ export http_proxy=http://127.0.0.1:9/
 export https_proxy=http://127.0.0.1:9/
 export no_proxy=localhost,127.0.0.1,0.0.0.0
 export LANG=C.UTF-8
-export SOURCE_DATE_EPOCH=1656045478
+export SOURCE_DATE_EPOCH=1656129151
 export GCC_IGNORE_WERROR=1
 export CFLAGS="$CFLAGS -fno-lto "
 export FCFLAGS="$FFLAGS -fno-lto "
@@ -88,7 +88,7 @@ export no_proxy=localhost,127.0.0.1,0.0.0.0
 make partcheck || :
 
 %install
-export SOURCE_DATE_EPOCH=1656045478
+export SOURCE_DATE_EPOCH=1656129151
 rm -rf %{buildroot}
 mkdir -p %{buildroot}/usr/share/package-licenses/libaio
 cp %{_builddir}/libaio-0.3.113/COPYING %{buildroot}/usr/share/package-licenses/libaio/cf756914ec51f52f9c121be247bfda232dc6afd2
