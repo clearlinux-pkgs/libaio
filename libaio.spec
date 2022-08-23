@@ -4,7 +4,7 @@
 #
 Name     : libaio
 Version  : 0.3.113
-Release  : 28
+Release  : 29
 URL      : https://releases.pagure.org/libaio/libaio-0.3.113.tar.gz
 Source0  : https://releases.pagure.org/libaio/libaio-0.3.113.tar.gz
 Summary  : Linux-native asynchronous I/O access library
